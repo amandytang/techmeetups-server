@@ -62,9 +62,9 @@ class PagesController < ApplicationController
     @token = params[:token]
     @fields = params[:fields]
 
+    options = { :fields => @fields }
     @response = HTTParty.get("https://api.meetup.com/self/calendar/",
-      :body => { :fields => @fields
-               },
+      query: options,
       :headers => {
         'Authorization' => "Bearer #{@token}"
       }
