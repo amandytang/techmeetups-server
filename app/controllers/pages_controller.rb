@@ -73,7 +73,6 @@ class PagesController < ApplicationController
     puts @response.body
     render :json => @response.body
 
-
   end
 
 end
