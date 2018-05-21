@@ -48,6 +48,7 @@ class PagesController < ApplicationController
     puts @response.body
 
     status = {}
+
     if @response.body.include?("problem")
       status["error"] = "Something went wrong."
       render :json => status
@@ -55,5 +56,24 @@ class PagesController < ApplicationController
 
   end
 
+
+  def attending
+
+    @fields = params[:fields]
+    @token = params[:token]
+
+    @response = HTTParty.get("https://api.meetup.com/self/calendar/",
+      :body => { :fields => @fields
+               },
+      :headers => {
+        'Authorization' => "Bearer #{@token}"
+      }
+    )
+
+    puts @response.body
+    render :json => @response.body
+
+
+  end
 
 end

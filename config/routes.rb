@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root :to => 'pages#join_meetup'
   post '/join_meetup' => 'pages#join_meetup'
   post '/join_group' => 'pages#join_group'
+  get '/attending' => 'pages#attending'
 
 end
 
