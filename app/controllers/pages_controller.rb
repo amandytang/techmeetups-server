@@ -19,13 +19,24 @@ class PagesController < ApplicationController
     status = {}
     if @response.body.include?("problem")
 
-      if @response.body.include?("You must be a member of this group to RSVP to the event.")
+      if @response.body.include?("too_few_spots")
+        status["error"] = "There are not enough spots for your rsvp."
+        render :json => status
+
+      elsif @response.body.include?("You must be a member of this group to RSVP to the event.")
         status["error"] = "You must be a member of this group to RSVP to the event."
         render :json => status
+
       elsif @response.body.include?("unauthorized")
         status["error"] = "You are not authorized to make that request."
         render :json => status
+
+      else
+        status["error"] = "Something went wrong."
+        render :json => status
       end
+
+
     end
   end
 
