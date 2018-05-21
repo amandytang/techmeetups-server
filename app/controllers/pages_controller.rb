@@ -59,11 +59,11 @@ class PagesController < ApplicationController
 
   def attending
 
-    @fields = params[:fields]
     @token = params[:token]
+    @fields = params[:fields]
 
     @response = HTTParty.get("https://api.meetup.com/self/calendar/",
-      :body => { :fields => "self"
+      :body => { :fields => @fields
                },
       :headers => {
         'Authorization' => "Bearer #{@token}"
