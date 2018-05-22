@@ -36,7 +36,6 @@ class PagesController < ApplicationController
         render :json => status
       end
 
-
     end
   end
 
